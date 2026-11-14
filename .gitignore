@@ -1,0 +1,10 @@
+# 实验产物只留台账与晨报,sandbox/elite 快照不入库
+experiments/*/sandbox/
+experiments/*/elite/
+domains/*/data/
+__pycache__/
+*.pyc
+.venv/
+domains/rec/model_state.json
+domains/rec/program.md.gen*
+domains/rec/judge_out.tmp

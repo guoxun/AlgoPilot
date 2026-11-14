@@ -1,0 +1,7 @@
+{"idea_id": "aggressive-lr", "idea": "激进学习率 0.2→2.0,加速收敛", "verdict": "rejected_by_delivery", "reason": "交付护栏 coverage_entropy=0.1636 低于下限 0.55", "alignment": {"offline_delta": 0.002388, "delivery_delta": 0.010313, "ratio": 4.319}, "ts": "2026-11-14 15:24:11"}
+{"idea_id": "cross-finer-buckets", "idea": "交叉特征分桶粒度 4→8(activity/quality 分桶更细)", "verdict": "rejected", "reason": "auc 0.626104 未超过 elite 0.626532+0.001", "alignment": null, "ts": "2026-11-14 15:24:12"}
+{"idea_id": "early-stop", "idea": "开启 early stopping(patience=30,内部验证集)", "verdict": "rejected", "reason": "auc 0.626532 未超过 elite 0.626532+0.001", "alignment": null, "ts": "2026-11-14 15:24:12"}
+{"idea_id": "pos-weight", "idea": "正例损失加权 1.0→3.0(类不平衡补偿)", "verdict": "failed", "reason": "护栏 val_logloss=0.4115 超上限 0.35", "alignment": null, "ts": "2026-11-14 15:24:12"}
+{"idea_id": "l2-stronger", "idea": "L2 正则加强 1e-4→1e-3", "verdict": "rejected", "reason": "auc 0.626537 未超过 elite 0.626532+0.001", "alignment": null, "ts": "2026-11-14 15:24:12"}
+{"idea_id": "calib", "idea": "开启 Platt 校准(内部验证集拟合温度)", "verdict": "rejected", "reason": "auc 0.626532 未超过 elite 0.626532+0.001", "alignment": null, "ts": "2026-11-14 15:24:13"}
+{"idea_id": "heat-boost", "idea": "高热段倾斜(heat>0.75 额外斜率 2.5)—— 给热门加权的重排规则", "verdict": "rejected", "reason": "auc 0.636835 未超过 elite 0.636312+0.001", "alignment": null, "ts": "2026-11-14 15:24:14"}

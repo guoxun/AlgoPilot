@@ -1,0 +1,2 @@
+{"idea_id": "feat-cross", "idea": "开启二阶特征交叉(age×cate、gender×cate、activity×quality 分桶积)", "gen": 1, "metrics": {"auc": 0.626532, "val_logloss": 0.342066}, "delivery": {"session_ctr": 0.212812, "cold_user_ctr": 0.128086, "coverage_entropy": 0.699086, "hot_exposure_share": 0.11375}, "ts": "2026-11-14 15:24:11"}
+{"idea_id": "more-epochs", "idea": "训练轮数 200→400", "gen": 2, "metrics": {"auc": 0.636312, "val_logloss": 0.339621}, "delivery": {"session_ctr": 0.244062, "cold_user_ctr": 0.146605, "coverage_entropy": 0.70206, "hot_exposure_share": 0.048125}, "ts": "2026-11-14 15:24:13"}

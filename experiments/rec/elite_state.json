@@ -1,0 +1,16 @@
+{
+  "elite_id": 11,
+  "idea_id": "more-epochs",
+  "metrics": {
+    "auc": 0.636312,
+    "val_logloss": 0.339621
+  },
+  "delivery_metrics": {
+    "session_ctr": 0.244062,
+    "cold_user_ctr": 0.146605,
+    "coverage_entropy": 0.70206,
+    "hot_exposure_share": 0.048125
+  },
+  "gen": 2,
+  "snapshot": "F:\\Study\\LLM_workspace\\github_workspace\\AlgoPilot\\experiments\\rec\\elite\\model.py"
+}

@@ -1,0 +1,25 @@
+{
+  "L1": {
+    "_doc": "定速巡航:只自动评测与出报告,人改代码。用 status/report 命令即可,不跑循环。",
+    "max_experiments": 0
+  },
+  "L2": {
+    "_doc": "辅助驾驶:agent 提 patch,人审核后手动应用。max_experiments 限制草案数量。",
+    "max_experiments": 5,
+    "stop_on_plateau": 3,
+    "elite_recheck_every": 100
+  },
+  "L3": {
+    "_doc": "有条件自动:离线装置内全自动棘轮循环,人只审上线门禁与晨报。",
+    "max_experiments": 50,
+    "stop_on_plateau": 8,
+    "elite_recheck_every": 8
+  },
+  "L4": {
+    "_doc": "高度自动:多分支并行(批内 workers 路并行实验、批末按 gen 序串行结算,共享台账)+ 高频 elite 复验。",
+    "max_experiments": 200,
+    "stop_on_plateau": 16,
+    "elite_recheck_every": 5,
+    "workers": 2
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "rec",
+  "metric": "auc",
+  "direction": "max",
+  "min_improve": 0.001,
+  "budget_seconds": 90,
+  "guard_limits": {
+    "train_seconds": ["le", 60],
+    "val_logloss": ["le", 0.35]
+  },
+  "delivery": {
+    "file": "delivery.py",
+    "metric": "session_ctr",
+    "direction": "max",
+    "min_keep": 0.0,
+    "guard_limits": {
+      "coverage_entropy": ["ge", 0.55],
+      "cold_user_ctr": ["ge", 0.04]
+    }
+  },
+  "editable_files": ["model.py"],
+  "frozen_files": ["prepare.py", "judge.py", "delivery.py"],
+  "program_md": "program.md"
+}

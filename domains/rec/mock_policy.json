@@ -1,0 +1,74 @@
+[
+  {
+    "idea_id": "feat-cross",
+    "idea": "开启二阶特征交叉(age×cate、gender×cate、activity×quality 分桶积)",
+    "rationale": "合成数据的点击概率含真实的年龄×品类偏好矩阵与活跃度×质量交互,线性模型抓不到",
+    "expected_effect": "AUC 大幅提升(主效应之外的交互信号全部解锁)",
+    "risk": "特征维度变大,过拟合风险小幅上升",
+    "knobs": {"_use_feature_cross": true}
+  },
+  {
+    "idea_id": "aggressive-lr",
+    "idea": "激进学习率 0.2→2.0,加速收敛",
+    "rationale": "更大的步长理论上更快到最优点",
+    "expected_effect": "收敛更快",
+    "risk": "momentum 放大后有效步长过大,可能震荡发散 —— 预期演示一次真实的失败回退",
+    "knobs": {"_lr": 2.0}
+  },
+  {
+    "idea_id": "cross-finer-buckets",
+    "idea": "交叉特征分桶粒度 4→8(activity/quality 分桶更细)",
+    "rationale": "更细的桶更接近连续交互面,前提是已开启特征交叉",
+    "expected_effect": "AUC 小幅提升",
+    "risk": "组合数 16→64,过拟合与维度代价",
+    "knobs": {"_n_act_buckets": 8}
+  },
+  {
+    "idea_id": "early-stop",
+    "idea": "开启 early stopping(patience=30,内部验证集)",
+    "rationale": "在最优迭代附近停住,防过拟合",
+    "expected_effect": "val 指标稳定或微升",
+    "risk": "几乎无",
+    "knobs": {"_patience": 30}
+  },
+  {
+    "idea_id": "pos-weight",
+    "idea": "正例损失加权 1.0→3.0(类不平衡补偿)",
+    "rationale": "CTR 正例率约 8%,加权让模型更关注正样本",
+    "expected_effect": "AUC 方向不确定,logloss 可能变差",
+    "risk": "校准被破坏(logloss 护栏)",
+    "knobs": {"_pos_weight": 3.0}
+  },
+  {
+    "idea_id": "l2-stronger",
+    "idea": "L2 正则加强 1e-4→1e-3",
+    "rationale": "交叉特征开启后维度变大,加强正则抑制过拟合",
+    "expected_effect": "val 指标微升或持平",
+    "risk": "正则过强欠拟合",
+    "knobs": {"_l2": 0.001}
+  },
+  {
+    "idea_id": "calib",
+    "idea": "开启 Platt 校准(内部验证集拟合温度)",
+    "rationale": "排序不变(AUC 不动),但点击率预估更准",
+    "expected_effect": "val_logloss 改善,AUC 不变 —— 预期被棘轮判为无提升",
+    "risk": "无",
+    "knobs": {"_use_calib": true}
+  },
+  {
+    "idea_id": "more-epochs",
+    "idea": "训练轮数 200→400",
+    "rationale": "更充分的收敛",
+    "expected_effect": "微幅提升",
+    "risk": "耗时翻倍(train_seconds 护栏)",
+    "knobs": {"_epochs": 400}
+  },
+  {
+    "idea_id": "heat-boost",
+    "idea": "高热段倾斜(heat>0.75 额外斜率 2.5)—— 给热门加权的重排规则",
+    "rationale": "heat 与 CTR 正相关,放大高热段信号可能涨离线 AUC",
+    "expected_effect": "离线微涨(不足 min_delta 时被离线棘轮拒)",
+    "risk": "马太效应:曝光生态向热门坍缩,曝光熵/冷启用户护栏 —— 交付门禁的典型拦截对象",
+    "knobs": {"_heat_boost": 2.5}
+  }
+]
